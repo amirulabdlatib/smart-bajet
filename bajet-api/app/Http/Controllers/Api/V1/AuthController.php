@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -24,7 +25,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Login successful',
             'user' => Auth::user()
-        ]);
+        ],Response::HTTP_OK);
     }
 
     public function register(Request $request)
@@ -48,6 +49,6 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Register successful',
             'user' => Auth::user()
-        ]);
+        ],Response::HTTP_CREATED);
     }
 }

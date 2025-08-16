@@ -51,4 +51,14 @@ class AuthController extends Controller
             'user' => Auth::user()
         ],Response::HTTP_CREATED);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->noContent();
+    }
 }
